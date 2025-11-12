@@ -3,7 +3,7 @@ metrics:
   # Each keystroke incurs a cost (defined in the keyboard's layout config)
   key_costs:
     enabled: false
-    weight: 20.0
+    weight: 0.1
     normalization:
       type: weight_found
       value: 1.0
