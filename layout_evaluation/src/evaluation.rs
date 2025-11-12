@@ -80,6 +80,8 @@ pub struct MetricParameters {
     pub oxey_alternates_sfs: Option<WeightedParams<oxey_alternates_sfs::Parameters>>,
     pub oxey_redirects: Option<WeightedParams<oxey_redirects::Parameters>>,
     pub oxey_bad_redirects: Option<WeightedParams<oxey_bad_redirects::Parameters>>,
+
+    pub thumb_key: Option<WeightedParams<thumb_key::Parameters>>,
 }
 
 /// The [`Evaluator`] object is responsible for evaluating multiple metrics with respect to given ngram data.
@@ -199,6 +201,8 @@ impl Evaluator {
         add_metric!(trigram_metric, oxey_alternates_sfs, OxeyAlternatesSfs);
         add_metric!(trigram_metric, oxey_redirects, OxeyRedirects);
         add_metric!(trigram_metric, oxey_bad_redirects, OxeyBadRedirects);
+
+        add_metric!(bigram_metric, thumb_key, ThumbKey);
 
         self
     }

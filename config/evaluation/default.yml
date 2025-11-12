@@ -398,6 +398,16 @@ metrics:
       exclude_modifiers: true
       exclude_chars: ["\n"]
 
+  thumb_key:
+    enabled: false
+    weight: 1.0
+    normalization:
+      type: weight_found
+      value: 1.0
+    params:
+      null: null
+
+
 ngrams:
   # Increase the weight of bigrams that have both an absolute weight and relative weight exceed
   # specified thresholds.

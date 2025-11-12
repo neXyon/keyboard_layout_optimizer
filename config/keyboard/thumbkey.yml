@@ -1,0 +1,146 @@
+keyboard:
+  matrix_positions:
+    - [[0,0], [1,0], [2,0]]
+    - [[0,1], [1,1], [2,1]]
+    - [[0,2], [1,2], [2,2]]
+
+  positions:
+    - [[  0.5,   0.5], [ 50.5,   0.5], [100.5,   0.5]]
+    - [[  0.5,  50.5], [ 50.5,  50.5], [100.5,  50.5]]
+    - [[  0.5, 100.5], [ 50.5, 100.5], [100.5, 100.5]]
+
+  hands:
+    - [Right, Right, Right]
+    - [Right, Right, Right]
+    - [Right, Right, Right]
+
+  fingers:
+    - [Thumb, Thumb, Thumb]
+    - [Thumb, Thumb, Thumb]
+    - [Thumb, Thumb, Thumb]
+
+  key_costs:
+    - [  5,  4,  6]
+    - [  4,  1,  2]
+    - [  5,  2,  2]
+
+  unbalancing_positions:
+    - [[0,   0], [0,  0], [0,   0]]
+    - [[0,   0], [0,  0], [0,   0]]
+    - [[0,   0], [0,  0], [0,   0]]
+
+  symmetries:
+    - [1, 2, 3]
+    - [4, 5, 6]
+    - [7, 8, 9]
+
+  finger_resting_positions:
+    Left:
+      Pinky: [50.5, 50.5]
+      Ring: [50.5, 50.5]
+      Middle: [50.5, 50.5]
+      Index: [50.5, 50.5]
+      Thumb: [50.5, 50.5]
+    Right:
+      Pinky: [50.5, 50.5]
+      Ring: [50.5, 50.5]
+      Middle: [50.5, 50.5]
+      Index: [50.5, 50.5]
+      Thumb: [50.5, 50.5]
+
+
+  plot_template: |2
+    ┌───┬───┬───┐
+    │ {{0}} │ {{1}} │ {{2}} │
+    ├───┼───┼───┤
+    │ {{3}} │ {{4}} │ {{5}} │
+    ├───┼───┼───┤
+    │ {{6}} │ {{7}} │ {{8}} │
+    └───┴───┴───┘
+
+  plot_template_short: |2
+    {{0}}{{1}}{{2}}
+    {{3}}{{4}}{{5}}
+    {{6}}{{7}}{{8}}
+
+base_layout:
+  keys:
+    # swipe-directions: no-swipe, up-left, up, up-right, left, right, down-left, down, down-right
+    # Row 1
+    - - ["s", "_", "_", "_", "_", "_", "_", "_", "w"]
+      - ["r", "_", "_", "_", "_", "g", "_", "g", "_"]
+      - ["o", "_", "_", "_", "_", "_", "u", "_", "_"]
+    # Row 2
+    - - ["n", "_", "_", "_", "_", "m", "_", "_", "_"]
+      - ["h", "j", "q", "b", "k", "p", "v", "x", "y"]
+      - ["a", "_", "_", "_", "l", "_", "_", "_", "_"]
+    # Row 3
+    - - ["t", "_", "_", "c", "_", "_", "_", "_", "_"]
+      - ["i", "_", "f", "_", "_", "z", "_", "_", "_"]
+      - ["e", "d", "_", "_", "_", "_", "_", "_", "_"]
+
+  fixed_keys:
+    - [false, false, false]
+    - [false, false, false]
+    - [false, false, false]
+
+  # for NeoLayoutGenerator:
+  # layers that shall not be permutated (starting from 0)
+  fixed_layers: []
+
+  # for GroupedLayoutGenerator:
+  # number of consecutive symbols from base layout to group together generating a layout
+  grouped_layers: 1
+
+  modifiers: []
+    # HACK: either comment line 230 in keyboard_layout/src/layout.rs (.take(modifiers.len() + 1)) or uncomment the following modifiers (and remove the [] above)
+    # HACK: (note: this entails additional key-costs for higher-layer symbols from key [0,0])
+    # HACK: even though there are no modifier keys in thumbkey, we need to specify modifiers in order for the layout to accept higher layer symbols
+    # - Left:
+    #     type: hold
+    #     value: [[0,0]]
+    #   Right:
+    #     type: hold
+    #     value: [[0,0]]
+    # - Left:
+    #     type: hold
+    #     value: [[0,0]]
+    #   Right:
+    #     type: hold
+    #     value: [[0,0]]
+    # - Left:
+    #     type: hold
+    #     value: [[0,0]]
+    #   Right:
+    #     type: hold
+    #     value: [[0,0]]
+    # - Left:
+    #     type: hold
+    #     value: [[0,0]]
+    #   Right:
+    #     type: hold
+    #     value: [[0,0]]
+    # - Left:
+    #     type: hold
+    #     value: [[0,0]]
+    #   Right:
+    #     type: hold
+    #     value: [[0,0]]
+    # - Left:
+    #     type: hold
+    #     value: [[0,0]]
+    #   Right:
+    #     type: hold
+    #     value: [[0,0]]
+    # - Left:
+    #     type: hold
+    #     value: [[0,0]]
+    #   Right:
+    #     type: hold
+    #     value: [[0,0]]
+    # - Left:
+    #     type: hold
+    #     value: [[0,0]]
+    #   Right:
+    #     type: hold
+    #     value: [[0,0]]
