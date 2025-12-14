@@ -13,6 +13,7 @@ pub mod keyboard;
 pub mod layout;
 pub mod layout_generator;
 pub mod neo_layout_generator;
+pub mod thumb_key;
 
 #[cfg(test)]
 mod tests {
