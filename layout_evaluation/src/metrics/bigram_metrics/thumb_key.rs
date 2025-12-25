@@ -49,6 +49,7 @@ impl BigramMetric for ThumbKey {
         let movement1 = k2_start_pos - k1_end_pos;
         let movement2 = k2_swipe_direction;
 
-        Some(f64::from(movement1.length() + movement2.length()) * weight)
+        //Some(f64::from(movement1.length()/* + movement2.length()*/) * weight)
+        Some(f64::from(if movement1.length() == 0.0 {0} else {10}) * weight)
     }
 }

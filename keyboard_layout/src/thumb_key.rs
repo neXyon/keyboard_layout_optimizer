@@ -4,7 +4,7 @@ use crate::layout::{LayerKey};
 use std::ops::{Add, Sub, Mul, Div, Rem};
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub struct Vec2(i8, i8);
+pub struct Vec2(pub i8, pub i8);
 
 impl Add for Vec2 {
     type Output = Self;
@@ -27,6 +27,14 @@ impl Sub for Vec2 {
 
     fn sub(self, other: Self) -> Self {
         Vec2(self.0 - other.0, self.1 - other.1)
+    }
+}
+
+impl Sub<i8> for Vec2 {
+    type Output = Self;
+
+    fn sub(self, other: i8) -> Self {
+        Vec2(self.0 - other, self.1 - other)
     }
 }
 
@@ -75,7 +83,7 @@ pub fn key_to_position(k: &LayerKey) -> Vec2
 
 pub fn key_to_movement(k: &LayerKey) -> Vec2
 {
-    let position = Vec2::from(k.key.matrix_position) / 3;
-    let center = position * 3 + 1;
-    Vec2::from(k.key.matrix_position) - center
+    /*let position = Vec2::from(k.key.matrix_position) / 3;
+    let center = position * 3 + 1;*/
+    Vec2::from(k.key.matrix_position) % 3 - 1//- center
 }
