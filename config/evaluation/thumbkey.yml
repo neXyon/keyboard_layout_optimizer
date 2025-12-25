@@ -3,7 +3,7 @@ metrics:
   # Each keystroke incurs a cost (defined in the keyboard's layout config)
   key_costs:
     enabled: true
-    weight: 10.0
+    weight: 1.0
     normalization:
       type: weight_found
       value: 1.0
@@ -20,7 +20,7 @@ metrics:
       null: null
 
   thumb_key_collisions:
-    enabled: true
+    enabled: false
     weight: 1.0
     normalization:
       type: weight_found
@@ -32,6 +32,71 @@ metrics:
       switch_bonus: 0.0
       switch_collision_penalty: 0.0
       double_switch_collision_penalty: 0.0
+
+  tk_distance:
+    enabled: true
+    weight: 0.4
+    normalization:
+      type: weight_found
+      value: 1.0
+    params:
+      swipe_distance: 0.75
+
+  tk_same_key:
+    enabled: true
+    weight: 1.0
+    normalization:
+      type: weight_found
+      value: 1.0
+    params:
+      null: null
+
+  hand_switches:
+    enabled: true
+    weight: 2.0
+    normalization:
+      type: weight_found
+      value: 1.0
+    params:
+      null: null
+
+  hand_disbalance:
+    enabled: true
+    weight: 0.1
+    normalization:
+      type: fixed
+      value: 1.0
+    params:
+      null: null
+
+  tk_collision:
+    enabled: true
+    weight: 1.0
+    normalization:
+      type: weight_found
+      value: 1.0
+    params:
+      weak_collision_weight: 0.5
+
+  tk_hand_switch_distance:
+    enabled: true
+    weight: 0.1
+    normalization:
+      type: weight_found
+      value: 1.0
+    params:
+      swipe_distance: 0.0
+
+  tk_hand_switch_same_key:
+    enabled: true
+    weight: 0.2
+    normalization:
+      type: weight_found
+      value: 1.0
+    params:
+      null: null
+
+
 
 ngrams:
   # Increase the weight of bigrams that have both an absolute weight and relative weight exceed

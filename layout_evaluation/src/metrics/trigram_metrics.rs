@@ -20,6 +20,8 @@ pub mod secondary_bigrams;
 pub mod trigram_finger_repeats;
 pub mod trigram_rolls;
 pub mod thumb_key_collisions;
+pub mod tk_hand_switch_distance;
+pub mod tk_hand_switch_same_key;
 
 /// TrigramMetric is a trait for metrics that iterates over weighted trigrams.
 pub trait TrigramMetric: Send + Sync + TrigramMetricClone + fmt::Debug {

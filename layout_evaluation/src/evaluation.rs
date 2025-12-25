@@ -81,8 +81,15 @@ pub struct MetricParameters {
     pub oxey_redirects: Option<WeightedParams<oxey_redirects::Parameters>>,
     pub oxey_bad_redirects: Option<WeightedParams<oxey_bad_redirects::Parameters>>,
 
+    pub hand_switches: Option<WeightedParams<hand_switches::Parameters>>,
+
     pub thumb_key: Option<WeightedParams<thumb_key::Parameters>>,
     pub thumb_key_collisions: Option<WeightedParams<thumb_key_collisions::Parameters>>,
+    pub tk_distance: Option<WeightedParams<tk_distance::Parameters>>,
+    pub tk_same_key: Option<WeightedParams<tk_same_key::Parameters>>,
+    pub tk_collision: Option<WeightedParams<tk_collision::Parameters>>,
+    pub tk_hand_switch_distance: Option<WeightedParams<tk_hand_switch_distance::Parameters>>,
+    pub tk_hand_switch_same_key: Option<WeightedParams<tk_hand_switch_same_key::Parameters>>,
 }
 
 /// The [`Evaluator`] object is responsible for evaluating multiple metrics with respect to given ngram data.
@@ -203,9 +210,16 @@ impl Evaluator {
         add_metric!(trigram_metric, oxey_redirects, OxeyRedirects);
         add_metric!(trigram_metric, oxey_bad_redirects, OxeyBadRedirects);
 
+        add_metric!(bigram_metric, hand_switches, HandSwitches);
+
         add_metric!(bigram_metric, thumb_key, ThumbKey);
+        add_metric!(bigram_metric, tk_distance, TKDistance);
+        add_metric!(bigram_metric, tk_same_key, TKSameKey);
+        add_metric!(bigram_metric, tk_collision, TKCollision);
 
         add_metric!(trigram_metric, thumb_key_collisions, ThumbKeyCollisions);
+        add_metric!(trigram_metric, tk_hand_switch_distance, TKHandSwitchDistance);
+        add_metric!(trigram_metric, tk_hand_switch_same_key, TKHandSwitchSameKey);
 
         self
     }

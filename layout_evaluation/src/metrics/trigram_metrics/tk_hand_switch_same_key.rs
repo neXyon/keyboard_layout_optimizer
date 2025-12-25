@@ -2,7 +2,7 @@
 //! specific bigram computing the planar movement of the finger from the finger's end position
 //! of the first letter to the end position of the second letter.
 
-use super::BigramMetric;
+use super::TrigramMetric;
 
 use keyboard_layout::{
     layout::{LayerKey, Layout},
@@ -12,20 +12,22 @@ use keyboard_layout::{
 use serde::Deserialize;
 
 #[derive(Clone, Deserialize, Debug)]
-pub struct Parameters {}
+pub struct Parameters {
+}
 
 #[derive(Clone, Debug)]
-pub struct ThumbKey {}
+pub struct TKHandSwitchSameKey {
+}
 
-impl ThumbKey {
+impl TKHandSwitchSameKey {
     pub fn new(_params: &Parameters) -> Self {
         Self {}
     }
 }
 
-impl BigramMetric for ThumbKey {
+impl TrigramMetric for TKHandSwitchSameKey {
     fn name(&self) -> &str {
-        "Thumb-Key"
+        "Thumb-Key Hand Switch Same Key"
     }
 
     #[inline(always)]
@@ -33,23 +35,28 @@ impl BigramMetric for ThumbKey {
         &self,
         k1: &LayerKey,
         k2: &LayerKey,
+        k3: &LayerKey,
         weight: f64,
         _total_weight: f64,
         _layout: &Layout,
     ) -> Option<f64> {
+        if (k1.key.hand == k2.key.hand) || (k1.key.hand != k3.key.hand) {
+            return Some(0.0);
+        }
+
         let k1_swipe_direction = key_to_movement(k1);
-        let k2_swipe_direction = key_to_movement(k2);
 
         let k1_start_pos = key_to_position(k1);
-        let k2_start_pos = key_to_position(k2);
+        let k3_start_pos = key_to_position(k3);
 
         let k1_end_pos = k1_start_pos + k1_swipe_direction;
-        //let k2_end_pos = k2_start_pos + k2_swipe_direction;
-        
-        let movement1 = k2_start_pos - k1_end_pos;
-        let movement2 = k2_swipe_direction;
 
-        Some(f64::from(movement1.length() + movement2.length()) * weight)
-        //Some(f64::from(if movement1.length() == 0.0 {0} else {10}) * weight)
+        // could consider also further moves, but from experience that doesn't happen:
+        // 1. observing myself: at the end of swiping, the finger movement is stopped,
+        //    even if it would move in the correct direction
+        // 2. swiping is harder due to the friction so it's stopped after a short distance,
+        //    though it is possible to swipe all the way to the target
+
+        Some(if k1_end_pos == k3_start_pos { -weight } else { 0.0 })
     }
 }

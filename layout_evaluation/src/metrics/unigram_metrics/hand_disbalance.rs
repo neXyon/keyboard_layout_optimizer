@@ -37,7 +37,7 @@ impl UnigramMetric for HandDisbalance {
         let mut total_weight = 0.0;
         unigrams
             .iter()
-            .filter(|(key, _weight)| key.key.finger != Finger::Thumb)
+            //.filter(|(key, _weight)| key.key.finger != Finger::Thumb)
             .for_each(|(key, weight)| {
                 *hand_loads.get_mut(&key.key.hand) += *weight;
                 total_weight += *weight;

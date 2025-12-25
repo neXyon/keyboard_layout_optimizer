@@ -16,7 +16,11 @@ pub mod no_handswitch_after_unbalancing_key;
 pub mod oxey_lsbs;
 pub mod oxey_sfbs;
 pub mod symmetric_handswitches;
+pub mod hand_switches;
 pub mod thumb_key;
+pub mod tk_distance;
+pub mod tk_same_key;
+pub mod tk_collision;
 
 /// BigramMetric is a trait for metrics that iterates over weighted bigrams.
 pub trait BigramMetric: Send + Sync + BigramMetricClone + fmt::Debug {

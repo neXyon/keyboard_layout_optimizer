@@ -12,20 +12,26 @@ use keyboard_layout::{
 use serde::Deserialize;
 
 #[derive(Clone, Deserialize, Debug)]
-pub struct Parameters {}
+pub struct Parameters {
+    weak_collision_weight: f64,
+}
 
 #[derive(Clone, Debug)]
-pub struct ThumbKey {}
+pub struct TKCollision {
+    weak_collision_weight: f64,
+}
 
-impl ThumbKey {
-    pub fn new(_params: &Parameters) -> Self {
-        Self {}
+impl TKCollision {
+    pub fn new(params: &Parameters) -> Self {
+        Self {
+            weak_collision_weight: params.weak_collision_weight
+        }
     }
 }
 
-impl BigramMetric for ThumbKey {
+impl BigramMetric for TKCollision {
     fn name(&self) -> &str {
-        "Thumb-Key"
+        "Thumb-Key Collision"
     }
 
     #[inline(always)]
@@ -37,6 +43,10 @@ impl BigramMetric for ThumbKey {
         _total_weight: f64,
         _layout: &Layout,
     ) -> Option<f64> {
+        if k1.key.hand == k2.key.hand {
+            return Some(0.0);
+        }
+
         let k1_swipe_direction = key_to_movement(k1);
         let k2_swipe_direction = key_to_movement(k2);
 
@@ -44,12 +54,11 @@ impl BigramMetric for ThumbKey {
         let k2_start_pos = key_to_position(k2);
 
         let k1_end_pos = k1_start_pos + k1_swipe_direction;
-        //let k2_end_pos = k2_start_pos + k2_swipe_direction;
-        
-        let movement1 = k2_start_pos - k1_end_pos;
-        let movement2 = k2_swipe_direction;
+        let k2_end_pos = k2_start_pos + k2_swipe_direction;
 
-        Some(f64::from(movement1.length() + movement2.length()) * weight)
-        //Some(f64::from(if movement1.length() == 0.0 {0} else {10}) * weight)
+        let strong_collision = k1_end_pos == k2_start_pos;
+        let weak_collision = (k1_start_pos == k2_start_pos) || (k1_end_pos == k2_end_pos);
+
+        Some(if strong_collision { weight } else if weak_collision { self.weak_collision_weight * weight } else { 0.0 })
     }
 }
