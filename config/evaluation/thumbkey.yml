@@ -3,7 +3,7 @@ metrics:
   # Each keystroke incurs a cost (defined in the keyboard's layout config)
   key_costs:
     enabled: true
-    weight: 1.0
+    weight: 10.0
     normalization:
       type: weight_found
       value: 1.0
@@ -34,8 +34,8 @@ metrics:
       double_switch_collision_penalty: 0.0
 
   tk_distance:
-    enabled: true
-    weight: 0.4
+    enabled: false
+    weight: 0.1
     normalization:
       type: weight_found
       value: 1.0
@@ -44,7 +44,7 @@ metrics:
 
   tk_same_key:
     enabled: true
-    weight: 1.0
+    weight: 500.0
     normalization:
       type: weight_found
       value: 1.0
@@ -52,7 +52,7 @@ metrics:
       null: null
 
   hand_switches:
-    enabled: true
+    enabled: false
     weight: 2.0
     normalization:
       type: weight_found
@@ -61,7 +61,7 @@ metrics:
       null: null
 
   hand_disbalance:
-    enabled: true
+    enabled: false
     weight: 0.1
     normalization:
       type: fixed
@@ -70,7 +70,7 @@ metrics:
       null: null
 
   tk_collision:
-    enabled: true
+    enabled: false
     weight: 1.0
     normalization:
       type: weight_found
@@ -79,7 +79,7 @@ metrics:
       weak_collision_weight: 0.5
 
   tk_hand_switch_distance:
-    enabled: true
+    enabled: false
     weight: 0.1
     normalization:
       type: weight_found
@@ -88,7 +88,7 @@ metrics:
       swipe_distance: 0.0
 
   tk_hand_switch_same_key:
-    enabled: true
+    enabled: false
     weight: 0.2
     normalization:
       type: weight_found
